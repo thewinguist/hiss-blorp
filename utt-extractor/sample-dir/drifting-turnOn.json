@@ -1,0 +1,85 @@
+{
+    "id": "drifting-turnOn",
+    "type": "DEVICE",
+    "method": "POST",
+    "accessLevel": "INTERNAL",
+    "description": "some description",
+    "status": "LIVE",
+    "params": [
+        {
+            "name": "location",
+            "paramId": "location",
+            "optional": true,
+            "status": "LIVE",
+            "deprecated": false,
+            "valueFrom": []
+        },
+        {
+            "name": "device",
+            "paramId": "device",
+            "optional": true,
+            "status": "LIVE",
+            "deprecated": false,
+            "valueFrom": []
+        },
+        {
+            "name": "deviceType",
+            "paramId": "deviceType",
+            "optional": true,
+            "status": "LIVE",
+            "deprecated": false,
+            "valueFrom": []
+        }
+    ],
+    "grammars": [
+        {
+            "groupId": "0",
+            "data": [
+                {
+                    "utterance": "#{device} lorem ipsum dolor sit amet",
+                    "locale": "ko-KR",
+                    "status": "LIVE",
+                    "params": [
+                        {
+                            "name": "device",
+                            "value": "TV"
+                        }
+                    ]
+                },
+                {
+                    "utterance": "Turn on drifting on my desk on the #{device}",
+                    "locale": "en",
+                    "status": "LIVE",
+                    "params": [
+                        {
+                            "name": "device",
+                            "value": "TV"
+                        }
+                    ]
+                },
+                {
+                    "utterance": "Lülita seadmes #{device} laual triivimine sisse",
+                    "locale": "et-EE",
+                    "status": "LIVE",
+                    "params": [
+                        {
+                            "name": "device",
+                            "value": "TV"
+                        }
+                    ]
+                },
+                {
+                    "utterance": "Active le dérapage sur mon bureau sur l'appareil #{device}",
+                    "locale": "fr-FR",
+                    "status": "LIVE",
+                    "params": [
+                        {
+                            "name": "device",
+                            "value": "TV"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

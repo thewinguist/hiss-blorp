@@ -1,0 +1,135 @@
+{
+    "id": "screenRotation-change",
+    "type": "DEVICE",
+    "method": "POST",
+    "accessLevel": "INTERNAL",
+    "description": "some description",
+    "status": "LIVE",
+    "params": [
+        {
+            "name": "location",
+            "paramId": "location",
+            "optional": true,
+            "status": "LIVE",
+            "deprecated": false,
+            "valueFrom": []
+        },
+        {
+            "name": "device",
+            "paramId": "device",
+            "optional": true,
+            "status": "LIVE",
+            "deprecated": false,
+            "valueFrom": []
+        },
+        {
+            "name": "deviceType",
+            "paramId": "deviceType",
+            "optional": true,
+            "status": "LIVE",
+            "deprecated": false,
+            "valueFrom": []
+        }
+    ],
+    "grammars": [
+        {
+            "groupId": "0",
+            "data": [
+                {
+                    "utterance": "#{device} lorem ipsum",
+                    "locale": "ko-KR",
+                    "status": "LIVE",
+                    "params": [
+                        {
+                            "name": "device",
+                            "value": "calculador"
+                        }
+                    ]
+                },
+                {
+                    "utterance": "Rotate the screen of the #{device}",
+                    "locale": "en",
+                    "status": "LIVE",
+                    "params": [
+                        {
+                            "name": "device",
+                            "value": "calculator"
+                        }
+                    ]
+                },
+                {
+                    "utterance": "Pivote l'écran de la #{device}",
+                    "locale": "fr-FR",
+                    "status": "LIVE",
+                    "params": [
+                        {
+                            "name": "device",
+                            "value": "calculatrice"
+                        }
+                    ]
+                },
+                {
+                    "utterance": "Pööra #{device} ekraani",
+                    "locale": "et-EE",
+                    "status": "LIVE",
+                    "params": [
+                        {
+                            "name": "device",
+                            "value": "kalkulaatori"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "groupId": "1",
+            "data": [
+                {
+                    "utterance": "Rotate the screen of #{device} in #{location}",
+                    "locale": "en",
+                    "status": "LIVE",
+                    "params": [
+                        {
+                            "name": "device",
+                            "value": "washing machine"
+                        },
+                        {
+                            "name": "location",
+                            "value": "living room"
+                        }
+                    ]
+                },
+                {
+                    "utterance": "Pivote l'écran de l'appareil #{device} du lieu #{location}",
+                    "locale": "fr-FR",
+                    "status": "LIVE",
+                    "params": [
+                        {
+                            "name": "device",
+                            "value": "machine à laver"
+                        },
+                        {
+                            "name": "location",
+                            "value": "salon"
+                        }
+                    ]
+                },
+                {
+                    "utterance": "Lorem ipsum #{location} dolor #{device} sit amet",
+                    "locale": "zh-CN",
+                    "status": "LIVE",
+                    "params": [
+                        {
+                            "name": "device",
+                            "value": "washing machine"
+                        },
+                        {
+                            "name": "location",
+                            "value": "living room"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
