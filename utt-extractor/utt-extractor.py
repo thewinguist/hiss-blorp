@@ -34,27 +34,34 @@ def extract_utts(selected_locale, dir):
     return(sorted(rows))
            
 # def export_rows(rows):
-#     #print(rows)
 #     with open('sample.csv', 'w') as f:
 #         # adds a header before everything else
 #         rows.insert(0, ['filename', 'utt number', 'utt filled', 'utt with gaps'])
 #         csv.writer(f, delimiter=',').writerows(rows)
 
 
-def import_rows(filepath):
+def import_rows(filepath: str):
+        utts_by_intent = {}
         with open(filepath, 'r') as f:
             reader = csv.reader(f, delimiter=',')
-            #obscure trick to skip the header
+            #skip the header:
             next(reader, None)
-
             for row in reader:
+                row = [row[0], int(row[1])-1, row[3]]
+                utts_by_intent[row[0]] = row[1::]
                 print(row)
-                # ['abnormalOperation-getStatus.json', 0, 'Anna mulle veepaagi olek', 'Anna mulle #{device} olek']
-                # one filename to insert them all:
-                # ['abnormalOperation-getStatus.json', [0, 'Anna mulle #{device} olek'], [1, 'Donne-moi l'alerte tamper de l'appareil #{device} dans le lieu #{location}']]
+                
+            print(utts_by_intent)
+            #sort the dictionary by intent filenames (just in case)
+            # filenames = list(utts_by_intent.keys())
+            # filenames.sort()
+            # utts_by_intent = {i: utts_by_intent[i] for i in filenames}
+        # return(utts_by_intent)
 
+# def import_utts(utts_by_intent: dict):
+#     for key in utts_by_intent:
+#         print(key, "->", utts_by_intent[key])
 
-# def import_utts(rows):
 
 if __name__ == "__main__":
     LOCALE = "fr-FR" #just 1 string pls
@@ -62,3 +69,4 @@ if __name__ == "__main__":
     #rows = extract_utts('fr-FR', DIR)
     # export_rows(rows)
     import_rows('sample.csv')
+    # import_utts(utts_by_intent)
