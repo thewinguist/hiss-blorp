@@ -39,34 +39,39 @@ def extract_utts(selected_locale, dir):
 #         rows.insert(0, ['filename', 'utt number', 'utt filled', 'utt with gaps'])
 #         csv.writer(f, delimiter=',').writerows(rows)
 
-
 def import_rows(filepath: str):
-        utts_by_intent = {}
+        rows = []
         with open(filepath, 'r') as f:
             reader = csv.reader(f, delimiter=',')
-            #skip the header:
+            #skip the csv header:
             next(reader, None)
             for row in reader:
+                #restore utt numbering from 0 and remove column [2] of human-friendly utts
                 row = [row[0], int(row[1])-1, row[3]]
-                utts_by_intent[row[0]] = row[1::]
-                print(row)
-                
-            print(utts_by_intent)
-            #sort the dictionary by intent filenames (just in case)
-            # filenames = list(utts_by_intent.keys())
-            # filenames.sort()
-            # utts_by_intent = {i: utts_by_intent[i] for i in filenames}
-        # return(utts_by_intent)
+                rows += [row]
+            rows = sorted(rows)
+            rows_by_intent = {}
+            #group utts by intent as dict values
+            current_intent = None
+            for row in rows:
+                intent = row[0]
+                if intent != current_intent:
+                    current_intent = intent
+                    rows_by_intent[current_intent] = []
+                rows_by_intent[current_intent].append(row[1:])
 
-# def import_utts(utts_by_intent: dict):
-#     for key in utts_by_intent:
-#         print(key, "->", utts_by_intent[key])
+            return(rows_by_intent)
 
+def import_utts(utts_by_intent: dict, dir: str):
+    for intent in utts_by_intent:
+        #print(key, "->", utts_by_intent[key])
+        if intent in os.listdir(dir):
+            print("it's a match! - " + intent)
 
 if __name__ == "__main__":
-    LOCALE = "fr-FR" #just 1 string pls
-    DIR = '../../intents/'
+    locale = "fr-FR" #just 1 string pls
+    dir = './sample-dir'
     #rows = extract_utts('fr-FR', DIR)
     # export_rows(rows)
-    import_rows('sample.csv')
-    # import_utts(utts_by_intent)
+    utts_by_intent = import_rows('sample.csv')
+    import_utts(utts_by_intent, dir)
